@@ -1,4 +1,3 @@
-
 const readline = require('readline');
 
 // Game Constants & Variables
@@ -58,7 +57,6 @@ function generateFood() {
     return newFood;
 }
 
-
 // Function to check for collisions
 // Collision Detection Algorithm
 function isCollide(snake) {
@@ -78,8 +76,7 @@ function isCollide(snake) {
 // Function to display the game state
 function draw() {
     // Clear terminal
-    readline.cursorTo(process.stdout, 0, 0);
-    readline.clearScreenDown(process.stdout);
+    process.stdout.write('\x1Bc');
 
     // Display game elements
     for (let y = 0; y < 20; y++) {
