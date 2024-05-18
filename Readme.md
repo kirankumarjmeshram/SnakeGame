@@ -36,5 +36,10 @@ The Snake game is a classic arcade game that has seen various implementations ov
   * **Arrays and Object:** Utilized for grid representation and tracking the positions of food and snake segments, enabling constant-time access and updates. (food, sneakArr)
   * **Queues:** Employed for managing the snake's body segments efficiently, facilitating easy additions (growth) and removals (movement).
   * **Randomized Algorithms:** Utilized for generating food positions on the grid in a way that avoids the snake's current position. (generateFood function)
+* **Algorithms used**
+
+  * Randomized Food Generating Algorithms
+  * Collision Detection Algorithm
+  * Game loop algorithm
 
 referance : (Coding Snake Game In JavaScript) [https://www.youtube.com/watch?v=2ZDnw6ifdSI]

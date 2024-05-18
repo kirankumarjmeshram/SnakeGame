@@ -5,7 +5,7 @@ const readline = require('readline');
 let inputDir = { x: 0, y: 0 };
 let speed = 5;
 let score = 0;
-let lastPaintTime = 0;
+let lastTime = 0;
 
 // Arrays or Hash Tables: 
 // For the grid representation and to track the positions of food and snake segments, 
@@ -19,12 +19,12 @@ let food = { x: 6, y: 7 };
 
 // Function to update game state (movement and collision detection)
 function update() {
-    // Update lastPaintTime
+    // Update lastTime
     const currentTime = Date.now();
-    if ((currentTime - lastPaintTime) / 1000 < 1 / speed) {
+    if ((currentTime - lastTime) / 1000 < 1 / speed) {
         return;
     }
-    lastPaintTime = currentTime;
+    lastTime = currentTime;
 
     // Update snake position
     for (let i = snakeArr.length - 2; i >= 0; i--) {
@@ -47,7 +47,7 @@ function update() {
     }
 }
 
-// Randomized Algorithms: For generating food positions on the grid in a way that avoids the snake's current position.
+// Randomized Food Generating Algorithms: For generating food positions on the grid in a way that avoids the snake's current position.
 // Function to generate food at random position
 function generateFood() {
     const newFood = { x: Math.floor(Math.random() * 18) + 1, y: Math.floor(Math.random() * 18) + 1 };
@@ -60,6 +60,7 @@ function generateFood() {
 
 
 // Function to check for collisions
+// Collision Detection Algorithm
 function isCollide(snake) {
     // Check if snake hits the wall
     if (snake[0].x <= 0 || snake[0].x >= 19 || snake[0].y <= 0 || snake[0].y >= 19) {
@@ -107,15 +108,18 @@ function gameOver() {
     process.exit(0);
 }
 
-// Main game loop
+// Main game loop 
+// Game loop algo
 setInterval(() => {
     update();
     draw();
 }, 100); // Adjust speed here
 
 // Listen for user input
+//  Movement Detection Algorithm
 readline.emitKeypressEvents(process.stdin);
 process.stdin.setRawMode(true);
+// dont use library  ie => process.stdin.on('keypress'
 process.stdin.on('keypress', (_, key) => {
     switch (key.name) {
         case 'up':
