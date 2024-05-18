@@ -9,11 +9,7 @@ let lastTime = 0;
 // Arrays or Hash Tables: 
 // For the grid representation and to track the positions of food and snake segments, 
 // allowing for constant-time access and updates.
-
-let snakeArr = [
-    { x: 13, y: 15 }
-];
-
+let snakeArr = [{ x: 13, y: 15 }];
 let food = { x: 6, y: 7 };
 
 // Function to update game state (movement and collision detection)
@@ -29,6 +25,7 @@ function update() {
     for (let i = snakeArr.length - 2; i >= 0; i--) {
         snakeArr[i + 1] = { ...snakeArr[i] };
     }
+    // Updating snake dir using on_keypress
     snakeArr[0].x += inputDir.x;
     snakeArr[0].y += inputDir.y;
 
@@ -52,7 +49,7 @@ function generateFood() {
     const newFood = { x: Math.floor(Math.random() * 18) + 1, y: Math.floor(Math.random() * 18) + 1 };
     // Ensure food doesn't overlap with snake
     if (snakeArr.some(segment => segment.x === newFood.x && segment.y === newFood.y)) {
-        return generateFood(); // Try again
+        return generateFood(); // Try again if overlap
     }
     return newFood;
 }
@@ -83,11 +80,11 @@ function draw() {
         let row = '';
         for (let x = 0; x < 20; x++) {
             if (y === 0 || y === 19 || x === 0 || x === 19) {
-                row += '# '; // Border
+                row += '■ '; // Border
             } else if (snakeArr.some(segment => segment.x === x && segment.y === y)) {
-                row += 'O '; // Snake
+                row += '🟩 '; // Snake
             } else if (food.x === x && food.y === y) {
-                row += '* '; // Food
+                row += '🍎 '; // Food
             } else {
                 row += '  '; // Empty space
             }
@@ -113,10 +110,9 @@ setInterval(() => {
 }, 100); // Adjust speed here
 
 // Listen for user input
-//  Movement Detection Algorithm
+// Movement Detection Algorithm
 readline.emitKeypressEvents(process.stdin);
-process.stdin.setRawMode(true);
-// dont use library  ie => process.stdin.on('keypress'
+process.stdin.setRawMode(true);// In raw mode, the input is read character by character without waiting for a newline (Enter key). This allows real-time handling of keyboard inputs, which is particularly useful for interactive applications like a Snake game.
 process.stdin.on('keypress', (_, key) => {
     switch (key.name) {
         case 'up':
