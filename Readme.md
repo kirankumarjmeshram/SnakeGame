@@ -25,11 +25,10 @@ The Snake game is a classic arcade game that has seen various implementations ov
 * A clear, terminal-based display shows the snake, food, and score.
 * Responsive control of the snake's direction using keyboard inputs.
 
-### DSA Concepts Applied:**
+### DSA Concepts Applied:
 
 * **Arrays and Object:** Utilized for grid representation and tracking the positions of food and snake segments, enabling constant-time access and updates. (food, sneakArr)
 * **Queues:** Employed for managing the snake's body segments efficiently, facilitating easy additions (growth) and removals (movement).
-* **Randomized Algorithms:** Utilized for generating food positions on the grid in a way that avoids the snake's current position. (generateFood function)
 
 ### Algorithms used
 
